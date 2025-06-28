@@ -1,0 +1,60 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('ja-JP', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+};
+---
+
+<Layout title="Blog">
+  <div class="max-w-4xl mx-auto px-4 py-20 min-h-[calc(100vh-14rem)]">
+    <h1 class="text-4xl md:text-5xl font-bold mb-12 text-center">Blog</h1>
+    
+    <div class="space-y-8">
+      {posts.map((post, index) => (
+        <article 
+          class="bg-dark-surface p-6 rounded-lg border border-dark-border hover:border-accent-primary transition-all duration-300 animate-slide-up"
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <a href={`/profilesite/blog/${post.slug}`} class="block group">
+            <h2 class="text-2xl font-semibold mb-2 group-hover:text-accent-primary transition-colors">
+              {post.data.title}
+            </h2>
+            <p class="text-dark-text-secondary mb-4">
+              {post.data.description}
+            </p>
+            <div class="flex items-center justify-between">
+              <time class="text-sm text-dark-text-secondary">
+                {formatDate(post.data.publishDate)}
+              </time>
+              <div class="flex gap-2">
+                {post.data.tags.map(tag => (
+                  <span class="px-2 py-1 bg-dark-bg rounded text-xs border border-dark-border">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+    
+    {posts.length === 0 && (
+      <div class="text-center py-20">
+        <p class="text-xl text-dark-text-secondary">
+          まだ記事がありません。
+        </p>
+      </div>
+    )}
+  </div>
+</Layout>
