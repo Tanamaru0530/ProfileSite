@@ -1,0 +1,65 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'バックエンドエンジニア / フルスタック志向' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/profilesite/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} - Toru Tanaka</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <ViewTransitions />
+  </head>
+  <body class="bg-dark-bg text-dark-text min-h-screen">
+    <nav class="fixed top-0 w-full bg-dark-surface/50 backdrop-blur-md border-b border-dark-border/50 z-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-center items-center h-14">
+          <div class="flex space-x-8">
+            <a href="/profilesite/" class="hover:text-accent-primary transition-colors">Home</a>
+            <a href="/profilesite/blog" class="hover:text-accent-primary transition-colors">Blog</a>
+            <a href="/profilesite/about" class="hover:text-accent-primary transition-colors">About</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <main class="pt-14">
+      <slot />
+    </main>
+    
+    <footer class="mt-20 py-8 border-t border-dark-border">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-dark-text-secondary">
+        <p>&copy; 2025 Toru Tanaka. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  code {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    * {
+      scroll-behavior: smooth;
+    }
+  }
+</style>

@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const skills = [
+  { category: 'Backend', items: ['Python', 'Java', 'C＃'] },
+  { category: 'Frontend', items: ['React', 'TypeScript', 'Astro', 'Tailwind CSS'] },
+  { category: 'Database', items: ['PostgreSQL', 'MySQL'] },
+  { category: 'DevOps', items: ['Docker', 'AWS', 'GitHub Actions', 'Linux'] },
+];
+---
+
+<Layout title="About">
+  <div class="max-w-4xl mx-auto px-4 py-20 min-h-[calc(100vh-14rem)]">
+    <h1 class="text-4xl md:text-5xl font-bold mb-12 text-center">About Me</h1>
+    
+    <section class="mb-16 animate-slide-up">
+      <h2 class="text-2xl font-semibold mb-6 text-accent-primary">自己紹介</h2>
+      <div class="bg-dark-surface p-6 rounded-lg border border-dark-border">
+        <p class="text-lg leading-relaxed mb-4">
+          ITエンジニアとして活動しているToru Tanakaです。
+          バックエンド開発を中心に、フルスタックに活躍したく日々学習を続けています。
+        </p>
+        <p class="text-lg leading-relaxed">
+          現在は転職も視野に入れています。
+          現在は設計、実装を担当していますが将来的にはSREやDevOpsの分野にも関わっていきたいと考えています。
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-16 animate-slide-up" style="animation-delay: 0.1s">
+      <h2 class="text-2xl font-semibold mb-6 text-accent-primary">スキルセット</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {skills.map(({ category, items }) => (
+          <div class="bg-dark-surface p-6 rounded-lg border border-dark-border">
+            <h3 class="text-xl font-semibold mb-4 text-accent-secondary">{category}</h3>
+            <div class="flex flex-wrap gap-2">
+              {items.map(item => (
+                <span class="px-3 py-1 bg-dark-bg rounded-full text-sm border border-dark-border">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+
+  </div>
+</Layout>

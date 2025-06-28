@@ -1,0 +1,36 @@
+---
+export interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<div class={`flex gap-8 justify-center ${className}`}>
+  <a 
+    href="https://github.com/Tanamaru0530" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="inline-block transition-transform duration-200 hover:scale-110"
+  >
+    <img src="/profilesite/images/github.webp" alt="GitHub" class="w-12 h-12" />
+  </a>
+  
+  <a 
+    href="https://qiita.com/Tanamaru0530" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="inline-block transition-transform duration-200 hover:scale-110"
+  >
+    <img src="/profilesite/images/qiita.webp" alt="Qiita" class="w-12 h-12" />
+  </a>
+  
+  <a 
+    href="https://www.linkedin.com/in/torutanaka-74444b364/" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="inline-block transition-transform duration-200 hover:scale-110"
+  >
+    <img src="/profilesite/images/linkedin.png" alt="LinkedIn" class="w-12 h-12" />
+  </a>
+</div>
